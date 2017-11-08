@@ -26,9 +26,12 @@ dotenv.config({ path: ".env.variable" });
 /**
  * Controllers (route handlers).
  */
-import {ProtocolController} from "./controllers/v1/protocol.controller";
+import { ProtocolController } from "./controllers/v1/protocol.controller";
+import { AnlysisReportsController } from "./controllers/v1/analysisreports.controller";
 
-let protocolcontroller =new ProtocolController();
+let protocolcontroller = new ProtocolController();
+let anlysisReportscontroller = new AnlysisReportsController();
+
 /**
  * API keys and Passport configuration.
  */
@@ -76,8 +79,7 @@ app.use(session({
  * Primary app routes.
  */
 app.post("/api/v1/protocols/reports/search", protocolcontroller.postProtocolReports);
-
-
+app.get("/api/v1/analysisreports/protocol/search", anlysisReportscontroller.postReports);
 
 /**
  * Error Handler. Provides full stack - remove for production
