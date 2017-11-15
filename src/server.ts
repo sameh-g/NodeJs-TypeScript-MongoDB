@@ -28,9 +28,11 @@ dotenv.config({ path: ".env.variable" });
  */
 import { ProtocolController } from "./controllers/v1/protocol.controller";
 import { AnlysisReportsController } from "./controllers/v1/analysisreports.controller";
+import { LocationHeirarchyController } from "./controllers/v1/location.heirarchy.controller";
 
 let protocolcontroller = new ProtocolController();
 let anlysisReportscontroller = new AnlysisReportsController();
+let locationsController = new LocationHeirarchyController();
 
 /**
  * API keys and Passport configuration.
@@ -80,6 +82,7 @@ app.use(session({
  */
 app.post("/api/v1/protocols/reports/search", protocolcontroller.postProtocolReports);
 app.get("/api/v1/analysisreports/protocol/search", anlysisReportscontroller.postReports);
+app.get("/api/v1/locations/countries", locationsController.GetLocations);
 
 /**
  * Error Handler. Provides full stack - remove for production
