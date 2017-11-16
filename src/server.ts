@@ -77,13 +77,20 @@ app.use(session({
 /**
  * Primary app routes.
  */
-app.get("/api/v1/region", locationsController.GetLocations);
-app.get("/api/v1/region/{regionCode}", locationsController.GetLocations);
-app.get("/api/v1/region/{regionCode}/territory", locationsController.GetLocations);
-app.get("/api/v1/region/{regionCode}/territory{territoryCode}", locationsController.GetLocations);
-app.get("/api/v1/region/{regionCode}/territory{territoryCode}/country", locationsController.GetLocations);
-app.get("/api/v1/region/{regionCode}/country", locationsController.GetLocations);
-app.get("/api/v1/region/{regionCode}/country/{countryCode}", locationsController.GetLocations);
+app.get("/api/v1/region", locationsController.getRegions);
+app.get("/api/v1/region/{regionCode}", locationsController.getRegionByCode);
+app.get("/api/v1/region/{regionCode}/territory", locationsController.getTerritoryByRegionCode);
+app.get("/api/v1/region/{regionCode}/territory{territoryCode}", locationsController.getTerritoryByCode);
+app.get("/api/v1/region/{regionCode}/territory{territoryCode}/country", locationsController.getCountries);
+app.get("/api/v1/region/{regionCode}/country", locationsController.getCountriesByRegionCode);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}", locationsController.getCountriesByCountryCode);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}/center", locationsController.getCountryCenters);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}/center/{centerCode}", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}/center/{centerCode}/site", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}/center/{centerCode}/site/{siteCode}", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}/center/{centerCode}/site/domain/{domainCode}", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}/site", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}/site/{siteCode}", locationsController.GetLocations);
 
 /**
  * Error Handler. Provides full stack - remove for production
