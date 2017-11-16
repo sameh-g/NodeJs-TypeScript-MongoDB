@@ -26,12 +26,9 @@ dotenv.config({ path: ".env.variable" });
 /**
  * Controllers (route handlers).
  */
-import { ProtocolController } from "./controllers/v1/protocol.controller";
-import { AnlysisReportsController } from "./controllers/v1/analysisreports.controller";
+
 import { LocationHeirarchyController } from "./controllers/v1/location.heirarchy.controller";
 
-let protocolcontroller = new ProtocolController();
-let anlysisReportscontroller = new AnlysisReportsController();
 let locationsController = new LocationHeirarchyController();
 
 /**
@@ -80,9 +77,13 @@ app.use(session({
 /**
  * Primary app routes.
  */
-app.post("/api/v1/protocols/reports/search", protocolcontroller.postProtocolReports);
-app.get("/api/v1/analysisreports/protocol/search", anlysisReportscontroller.postReports);
-app.get("/api/v1/locations/countries", locationsController.GetLocations);
+app.get("/api/v1/region", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/territory", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/territory{territoryCode}", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/territory{territoryCode}/country", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/country", locationsController.GetLocations);
+app.get("/api/v1/region/{regionCode}/country/{countryCode}", locationsController.GetLocations);
 
 /**
  * Error Handler. Provides full stack - remove for production
