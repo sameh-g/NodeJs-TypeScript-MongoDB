@@ -36,6 +36,23 @@ export class LocationHeirarchyController {
 
     }
     
+StoringHash=(req:Request,res:Response)=>{
+
+    client.hmset('frameworks', 'javascript', 'AngularJS', 'css', 'Bootstrap', 'node', 'Express');
+    
+    client.hgetall('frameworks', function(err:any, object:any) {
+        res.json(object);
+    });
+
+}
+
+DeleteKey=(req:Request,res:Response)=>{
+    client.del('frameworks', function(err:any, reply:any) {
+        console.log(reply);
+    });
+}
+
+
     public CHeckRedis(req: Request, res: Response) {
 
         client.exists("framework", function (err: any, reply: any) {
