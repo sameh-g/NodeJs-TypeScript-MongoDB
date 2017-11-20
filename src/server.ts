@@ -77,6 +77,9 @@ app.use(session({
 /**
  * Primary app routes.
  */
+app.get("/api/v1", locationsController.SetLocation);
+app.get("/api/v1/check", locationsController.CHeckRedis);
+app.post("/api/v1/update", locationsController.update);
 app.get("/api/v1/region", locationsController.getRegions);
 app.get("/api/v1/region/{regionCode}", locationsController.getRegionByCode);
 app.get("/api/v1/region/{regionCode}/territory", locationsController.getTerritoryByRegionCode);
